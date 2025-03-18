@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Quicksand } from 'next/font/google';
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { IoReturnDownBackOutline } from 'react-icons/io5';
 
 const quicksand = Quicksand({
@@ -57,9 +58,19 @@ export default function ExperienceBanners({
                                 toggleFullScreen();
                             }
                         }}
-                        className="w-full"
+                        className={`w-full ${
+                            isFullScreen
+                                ? 'flex justify-center items-center'
+                                : ''
+                        }`}
                     >
-                        <div className="bg-[#252525] p-5 border border-[#e5e5e5] rounded-md hover:bg-[#303030] transition-all cursor-pointer">
+                        <div
+                            className={`bg-[#252525] p-5 border border-[#e5e5e5] rounded-md transition-all cursor-pointer ${
+                                isFullScreen
+                                    ? 'lg:w-1/2 lg:h-100 border-none bg-transparent hover:none'
+                                    : 'hover:bg-[#303030] '
+                            }`}
+                        >
                             <div className="flex justify-between flex-col items-start lg:flex-row ">
                                 <div className="flex items-center gap-3 lg:gap-5">
                                     <img
@@ -80,7 +91,7 @@ export default function ExperienceBanners({
                                         </h2>
                                     </div>
                                     {isFullScreen && (
-                                        <div className="ml-5">
+                                        <div className="ml-5 hover:bg-[#e5e5e5] hover:text-[#252525] rounded-lg p-2">
                                             <IoReturnDownBackOutline
                                                 size={40}
                                             />
@@ -94,11 +105,20 @@ export default function ExperienceBanners({
                                 </span>
                             </div>
                             {isFullScreen && (
-                                <p
-                                    className={`${quicksand.className} text-[#e5e5e5] text-justify mt-6 text-sm/6 lg:text-base font-light`}
+                                <motion.div
+                                    initial={{ opacity: 0, y: -100 }}
+                                    animate={{
+                                        opacity: [0, 0, 1],
+                                        y: [-80, -20, 0]
+                                    }}
+                                    transition={{ duration: 1.5 }}
                                 >
-                                    {exp.description}
-                                </p>
+                                    <p
+                                        className={`${quicksand.className} text-[#e5e5e5] text-justify mt-6 text-sm/6 lg:text-base font-light`}
+                                    >
+                                        {exp.description}
+                                    </p>
+                                </motion.div>
                             )}
                         </div>
                     </button>

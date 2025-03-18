@@ -4,6 +4,7 @@ import { Quicksand } from 'next/font/google';
 import HomeButtons from './components/homeButtons';
 import { useState } from 'react';
 import HomeBanners from './components/homeBanners';
+import { FaRegCopyright } from 'react-icons/fa';
 
 const quicksand = Quicksand({
     subsets: ['latin']
@@ -32,10 +33,15 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
             >
-                <h2 className={`${quicksand.className} text-2xl`}>Enzo Noda</h2>
-                <h3 className={`${quicksand.className} text-md`}>
-                    Designer & Fullstack Developer
-                </h3>
+                <div className="w-[235px]">
+                    <h2 className={`${quicksand.className} text-2xl`}>
+                        Enzo Noda
+                    </h2>
+                    <h3 className={`${quicksand.className} text-md`}>
+                        Designer & Fullstack Developer
+                    </h3>
+                    <div className="h-[1px] bg-[#e5e5e5]" />
+                </div>
             </motion.div>
             <div className="grid grid-cols-3 gap-4">
                 <div className="w-1/2 col-span-1">
@@ -70,6 +76,13 @@ export default function Home() {
                         </motion.div>
                     </AnimatePresence>
                 </div>
+            </div>
+            <div className="w-full h-[1px] bg-[#e5e5e5] fixed bottom-8" />
+            <div className="fixed right-2 bottom-2 flex flex-row justify-center items-center gap-1 mr-2">
+                <FaRegCopyright size={10} />
+                <h2 className={`${quicksand.className} text-[12px]`}>
+                    Enzo Noda
+                </h2>
             </div>
         </main>
     );

@@ -27,9 +27,9 @@ export default function HomeButtons({
         <div className="flex flex-col gap-1">
             {list.map(item => (
                 <button
-                    className={`w-[100px] lg:w-[150px] py-2 rounded-lg ${
+                    className={`relative w-[100px] lg:w-[150px] py-2 rounded-lg overflow-hidden hover:text-[#252525] transition-colors duration-500 ease-in-out hover:bg-[#e5e5e5] ${
                         quicksand.className
-                    } ${
+                    }  ${
                         selectedId === item.id
                             ? 'text-[#252525]'
                             : 'text-[#e5e5e5]'

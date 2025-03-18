@@ -26,11 +26,11 @@ const skills = [
 ];
 export default function SkillsBanners() {
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 text-lg font-bold mt-7 lg:mt-12 w-full place-items-center gap-y-6 lg:gap-y-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 text-lg font-bold mt-2 lg:mt-8 w-full place-items-center gap-y-5 lg:gap-y-12">
             {skills.map(skill => (
                 <div
                     key={skill.id}
-                    className="bg-[#252525] border border-[#e5e5e5] hover:bg-[#e5e5e5] hover:text-[#252525] transition-all cursor-pointer text-xs md:text-lg lg:text-xl  rounded p-3 h-22 w-22 md:h-30 md:w-30 lg:h-36 lg:w-36 flex flex-col items-center justify-center gap-2 lg:gap-5"
+                    className="bg-[#252525] border border-[#e5e5e5] hover:bg-[#e5e5e5] hover:text-[#252525] transition-all cursor-pointer text-[10px] md:text-lg lg:text-xl  rounded p-3 h-18 w-18 md:h-30 md:w-30 lg:h-36 lg:w-36 flex flex-col items-center justify-center gap-2 lg:gap-5"
                 >
                     {skill.icon}
                     <p className={`${quicksand.className}`}>{skill.name}</p>
