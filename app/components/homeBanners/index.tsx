@@ -4,18 +4,19 @@ import React from 'react';
 import SkillsBanners from '../skillsBanners';
 import ExperienceBanners from '../experienceBanners';
 import ContactBanners from '../contactBanners';
+import ProjectsBanners from '../projectsBanners';
 const quicksand = Quicksand({
     subsets: ['latin']
 });
 interface HomeBannersProps {
     selectedId: number;
     isFullScreen: boolean;
-    toggleFullScreen: () => void;
+    setIsFullScreen: (_: boolean) => void;
 }
 export default function HomeBanners({
     selectedId,
     isFullScreen,
-    toggleFullScreen
+    setIsFullScreen
 }: HomeBannersProps) {
     return (
         <>
@@ -58,21 +59,21 @@ export default function HomeBanners({
                 >
                     <ExperienceBanners
                         isFullScreen={isFullScreen}
-                        toggleFullScreen={toggleFullScreen}
+                        setIsFullScreen={setIsFullScreen}
                     />
                 </motion.div>
             )}
             {selectedId === 4 && (
                 <motion.div
-                    className="bg-[#252525] text-[#e5e5e5] border border-[#e5e5e5] rounded-md p-5"
+                    className="bg-[#252525] text-[#e5e5e5] border border-[#e5e5e5] rounded-md p-5 overflow-auto"
                     initial={{
-                        height: '70vh',
+                        height: 'auto',
                         width: '100%',
                         top: 'auto',
                         left: 'auto'
                     }}
                     animate={{
-                        height: isFullScreen ? '80vh' : '70vh',
+                        height: isFullScreen ? '80vh' : 'auto',
                         width: isFullScreen ? '90vw' : '60vw',
                         top: isFullScreen ? 0 : 'auto',
                         left: isFullScreen ? 0 : 'auto',
@@ -85,7 +86,10 @@ export default function HomeBanners({
                     }}
                     style={{ position: 'fixed' }}
                 >
-                    <button onClick={toggleFullScreen}>click</button>
+                    <ProjectsBanners
+                        isFullScreen={isFullScreen}
+                        setIsFullScreen={setIsFullScreen}
+                    />
                 </motion.div>
             )}
             {selectedId === 5 && (

@@ -22,10 +22,6 @@ export default function Home() {
         }
     };
 
-    const toggleFullScreen = () => {
-        setIsFullScreen(!isFullScreen); // Alternar entre tela cheia e normal
-    };
-
     return (
         <main className="m-5 lg:m-10">
             <motion.div
@@ -71,7 +67,7 @@ export default function Home() {
                             <HomeBanners
                                 selectedId={selectedId}
                                 isFullScreen={isFullScreen}
-                                toggleFullScreen={toggleFullScreen}
+                                setIsFullScreen={setIsFullScreen}
                             />
                         </motion.div>
                     </AnimatePresence>

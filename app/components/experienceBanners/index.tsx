@@ -31,12 +31,12 @@ const experiences = [
 
 interface ExperienceBannersProps {
     isFullScreen: boolean;
-    toggleFullScreen: () => void;
+    setIsFullScreen: (_: boolean) => void;
 }
 
 export default function ExperienceBanners({
     isFullScreen,
-    toggleFullScreen
+    setIsFullScreen
 }: ExperienceBannersProps) {
     const [experienceSelected, setExperienceSelected] = useState<number | null>(
         null
@@ -47,16 +47,11 @@ export default function ExperienceBanners({
             {experiences
                 .filter(exp => !isFullScreen || experienceSelected === exp.id)
                 .map(exp => (
-                    <button
+                    <div
                         key={exp.id}
                         onClick={() => {
-                            if (!isFullScreen) {
-                                setExperienceSelected(exp.id);
-                                toggleFullScreen();
-                            } else {
-                                setExperienceSelected(null);
-                                toggleFullScreen();
-                            }
+                            setExperienceSelected(exp.id);
+                            setIsFullScreen(true);
                         }}
                         className={`w-full ${
                             isFullScreen
@@ -65,10 +60,10 @@ export default function ExperienceBanners({
                         }`}
                     >
                         <div
-                            className={`bg-[#252525] p-5 border border-[#e5e5e5] rounded-md transition-all cursor-pointer ${
+                            className={`bg-[#252525] p-5 border border-[#e5e5e5] rounded-md transition-all  ${
                                 isFullScreen
-                                    ? 'lg:w-1/2 lg:h-100 border-none bg-transparent hover:none'
-                                    : 'hover:bg-[#303030] '
+                                    ? 'lg:w-1/2 lg:h-100 border-none bg-transparent hover:none '
+                                    : 'hover:bg-[#303030] cursor-pointer'
                             }`}
                         >
                             <div className="flex justify-between flex-col items-start lg:flex-row ">
@@ -91,11 +86,17 @@ export default function ExperienceBanners({
                                         </h2>
                                     </div>
                                     {isFullScreen && (
-                                        <div className="ml-5 hover:bg-[#e5e5e5] hover:text-[#252525] rounded-lg p-2">
+                                        <button
+                                            onClick={e => {
+                                                e.stopPropagation();
+                                                setIsFullScreen(false);
+                                            }}
+                                            className="ml-5 hover:bg-[#e5e5e5] hover:text-[#252525] rounded-lg p-2 cursor-pointer"
+                                        >
                                             <IoReturnDownBackOutline
                                                 size={40}
                                             />
-                                        </div>
+                                        </button>
                                     )}
                                 </div>
                                 <span
@@ -121,7 +122,7 @@ export default function ExperienceBanners({
                                 </motion.div>
                             )}
                         </div>
-                    </button>
+                    </div>
                 ))}
         </div>
     );
